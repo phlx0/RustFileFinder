@@ -1,52 +1,47 @@
-🔍 Fuzzy File Finder (Rust)
+# 🔍 Fuzzy File Finder (Rust)
 
-A fast, parallel CLI tool that searches your filesystem for files whose names approximately match a query using Jaro–Winkler similarity.
+A fast, parallel CLI tool that searches your filesystem for files whose names **approximately** match a query using Jaro–Winkler similarity.
 
-Features
+## Features
 
-Fuzzy filename matching (handles typos)
+- Fuzzy filename matching (handles typos)
+- Parallel search with `rayon`
+- Works on Windows, Linux, and macOS
+- Ranks and shows the top 10 matches
 
-Parallel search with rayon
+## Dependencies
 
-Works on Windows, Linux, and macOS
-
-Ranks and shows the top 10 matches
-
-Dependencies
+```toml
 [dependencies]
 rayon = "1"
 strsim = "0.11"
 walkdir = "2"
+```
 
-Run
+## Run
+
+```bash
 cargo run --release
+```
 
 Enter part of a filename when prompted.
 
-How It Works
+## How It Works
 
-Searches from C:\ (Windows) or / (Unix)
+- Searches from `C:\` (Windows) or `/` (Unix)
+- Compares every filename to your query
+- Keeps matches with score > `0.75`
+- Sorts by best similarity
 
-Compares every filename to your query
+## Notes
 
-Keeps matches with score > 0.75
+- First run can be slow (it scans the whole disk)
+- Permission errors are ignored
+- `--release` is recommended for speed
 
-Sorts by best similarity
+## Ideas to Extend
 
-Notes
-
-First run can be slow (it scans the whole disk)
-
-Permission errors are ignored
-
---release is recommended for speed
-
-Ideas to Extend
-
-Exclude system folders
-
-Filter by extension
-
-Start from a custom directory
-
-Add CLI arguments instead of prompt
+- Exclude system folders
+- Filter by extension
+- Start from a custom directory
+- Add CLI arguments instead of prompt
