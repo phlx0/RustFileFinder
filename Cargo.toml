@@ -1,0 +1,10 @@
+[package]
+name = "RustFussySearch"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+walkdir = "2.5"
+strsim = "0.11"
+rayon = "1.10"
+
